@@ -1,0 +1,69 @@
+# Formal Model
+
+## Tuple Definition
+
+A Minimal Executable Digital Object (MEDO) is:
+
+\[
+O = (M, P, S_0, \tau)
+\]
+
+- \(M\): declared metadata
+- \(P\): deterministic transition function
+- \(S_0\): initial state
+- \(\tau\): fixed drift threshold
+
+State evolution:
+
+\[
+S_{n+1} = P(S_n)
+\]
+
+## Drift and Gate
+
+Deterministic drift metric:
+
+\[
+D(S_n, S_{n+1}) = \sum_{k \in K} |S_{n+1}[k] - S_n[k]|
+\]
+
+where \(K\) is the union of numeric keys in both states.
+
+Gate condition:
+
+\[
+D(S_n, S_{n+1}) > \tau \Rightarrow \text{ConformanceFailure}
+\]
+
+## Checkpoint Chain
+
+Let \(H(\cdot)\) be SHA256 and \(h_n = H(S_n)\). With genesis checkpoint \(C_{-1}\):
+
+\[
+C_n = H(C_{n-1} \| h_n)
+\]
+
+## Invariants
+
+- Determinism: for fixed \(S_n\), \(P(S_n)\) is unique.
+- Structural drift: \(D\) is deterministic and non-negative.
+- Gate safety: accepted transitions satisfy \(D \leq \tau\).
+- Checkpoint consistency: each \(C_n\) depends on \(C_{n-1}\) and \(S_n\).
+
+## Causal Closure Criteria
+
+A run is causally closed iff:
+
+- Every accepted \(S_{n+1}\) equals \(P(S_n)\).
+- Every accepted transition satisfies \(D \leq \tau\).
+- The checkpoint chain is contiguous under the recurrence for all accepted states.
+
+## Replay Verifiability Condition
+
+Given an audit bundle, replay verifiability holds iff recomputation of:
+
+1. transition sequence,
+2. drift sequence,
+3. checkpoint chain,
+
+yields the same final checkpoint hash as the bundle. Any mismatch implies tamper.
