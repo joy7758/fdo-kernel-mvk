@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 from kernel.checkpoint import checkpoint_chain
 from kernel.drift import l1_distance
@@ -7,6 +8,7 @@ from kernel.object_model import MEDO, transition
 
 
 def main() -> None:
+    root_dir = Path(__file__).resolve().parent
     medo = MEDO(
         metadata={"id": "medo-001", "name": "fdo-kernel-mvk"},
         initial_state={"x": 0, "y": 0},
@@ -47,7 +49,7 @@ def main() -> None:
         },
     }
 
-    with open("audit_bundle.json", "w", encoding="utf-8") as handle:
+    with open(root_dir / "audit_bundle.json", "w", encoding="utf-8") as handle:
         json.dump(bundle, handle, indent=2, sort_keys=True)
 
 

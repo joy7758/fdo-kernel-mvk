@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from typing import Dict, List
 
 try:
@@ -11,18 +12,26 @@ except ImportError:
     from object_model import transition
 
 State = Dict[str, int]
+DEFAULT_BUNDLE = Path(__file__).resolve().parents[1] / "audit_bundle.json"
 
 
-def _load_bundle(path: str) -> Dict[str, object]:
+def _load_bundle(path: Path) -> Dict[str, object]:
     with open(path, "r", encoding="utf-8") as handle:
         return json.load(handle)
 
 
-def verify_bundle(path: str = "audit_bundle.json") -> bool:
-    bundle = _load_bundle(path)
-    states: List[State] = bundle["accepted_states"]
-    transition_count: int = bundle["transition_count"]
-    threshold: int = bundle["threshold"]
+def verify_bundle(path: str = str(DEFAULT_BUNDLE)) -> bool:
+    try:
+        bundle = _load_bundle(Path(path))
+        states: List[State] = bundle["accepted_states"]
+        transition_count: int = bundle["transition_count"]
+        threshold: int = bundle["threshold"]
+    except (OSError, json.JSONDecodeError, KeyError, TypeError):
+        print("TAMPER DETECTED")
+        return False
+    if not states or transition_count != len(states) - 1:
+        print("TAMPER DETECTED")
+        return False
 
     replayed_states: List[State] = [states[0]]
     for _ in range(transition_count):
@@ -33,6 +42,9 @@ def verify_bundle(path: str = "audit_bundle.json") -> bool:
 
     replayed_drifts = [l1_distance(states[i], states[i + 1]) for i in range(len(states) - 1)]
     if replayed_drifts != bundle["drifts"]:
+        print("TAMPER DETECTED")
+        return False
+    if len(replayed_drifts) != transition_count:
         print("TAMPER DETECTED")
         return False
     if any(drift > threshold for drift in replayed_drifts):
@@ -47,12 +59,18 @@ def verify_bundle(path: str = "audit_bundle.json") -> bool:
         print("TAMPER DETECTED")
         return False
 
-    event = bundle["drift_event"]
-    event_drift = l1_distance(states[-1], event["attempted_state"])
-    if event_drift != event["drift"] or event_drift <= threshold:
+    try:
+        event = bundle["drift_event"]
+        event_drift = l1_distance(states[-1], event["attempted_state"])
+        event_value = event["drift"]
+        rollback_state = event["rollback_state"]
+    except (KeyError, TypeError):
         print("TAMPER DETECTED")
         return False
-    if event["rollback_state"] != states[-1]:
+    if event_drift != event_value or event_drift <= threshold:
+        print("TAMPER DETECTED")
+        return False
+    if rollback_state != states[-1]:
         print("TAMPER DETECTED")
         return False
 
