@@ -8,7 +8,7 @@ Architecture index (Layer 0/1/2): `../edo-architecture-index` (replace with publ
 
 `fdo-kernel-mvk` is a minimal implementation of an executable digital object model with replay verification. The kernel is intentionally constrained to deterministic state transitions, deterministic drift checks, and a hash-linked checkpoint chain.
 
-This repository demonstrates causal closure: every accepted state is produced by the declared transition function, bounded by a fixed drift threshold, and anchored in an auditable checkpoint chain.
+This repository demonstrates causal closure: object identity (`metadata + threshold + initial_state`) and accepted state evolution are jointly bound in an auditable checkpoint chain.
 
 ## Scope Constraints
 
@@ -21,6 +21,8 @@ This repository demonstrates causal closure: every accepted state is produced by
 ## Repository Layout
 
 - `docs/formal_model.md`: formal tuple, invariants, and verification criteria.
+- `docs/invariants.md`: structural invariants for MVK v0.2.
+- `docs/walkthrough.md`: reproducible verification and tamper checks.
 - `kernel/object_model.py`: MEDO tuple and deterministic transition function.
 - `kernel/drift.py`: deterministic L1 drift metric.
 - `kernel/gate.py`: conformance gate and failure type.

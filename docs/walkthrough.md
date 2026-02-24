@@ -27,9 +27,29 @@ Expected output:
 VERIFIED: Causally Closed Object
 ```
 
-## 3. Tamper Detection
+## 3. State Tamper Detection
 
-Modify audit_bundle.json and rerun verification.
+Modify any accepted state in audit_bundle.json and rerun verification.
+
+Expected output:
+
+```text
+TAMPER DETECTED
+```
+
+## 4. Threshold Tamper Detection
+
+Modify `threshold` in `audit_bundle.json` and rerun verification.
+
+Expected output:
+
+```text
+TAMPER DETECTED
+```
+
+## 5. Metadata Tamper Detection
+
+Modify `metadata` in `audit_bundle.json` and rerun verification.
 
 Expected output:
 

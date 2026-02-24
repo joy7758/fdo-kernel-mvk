@@ -4,7 +4,7 @@ from pathlib import Path
 from kernel.checkpoint import checkpoint_chain
 from kernel.drift import l1_distance
 from kernel.gate import ConformanceFailure, enforce_drift_bound
-from kernel.object_model import MEDO, transition
+from kernel.object_model import MEDO, compute_object_id, transition
 
 
 def main() -> None:
@@ -14,6 +14,7 @@ def main() -> None:
         initial_state={"x": 0, "y": 0},
         threshold=3,
     )
+    object_id = compute_object_id(medo.metadata, medo.threshold, medo.initial_state)
 
     states = [dict(medo.initial_state)]
     drifts = []
@@ -33,10 +34,12 @@ def main() -> None:
     except ConformanceFailure:
         pass
 
-    checkpoints = checkpoint_chain(states)
+    checkpoints = checkpoint_chain(object_id, states)
     bundle = {
+        "object_id": object_id,
         "metadata": medo.metadata,
         "threshold": medo.threshold,
+        "initial_state": medo.initial_state,
         "transition_count": 5,
         "accepted_states": states,
         "drifts": drifts,

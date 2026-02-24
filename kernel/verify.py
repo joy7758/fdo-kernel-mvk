@@ -5,11 +5,11 @@ from typing import Dict, List
 try:
     from .checkpoint import checkpoint_chain
     from .drift import l1_distance
-    from .object_model import transition
+    from .object_model import compute_object_id, transition
 except ImportError:
     from checkpoint import checkpoint_chain
     from drift import l1_distance
-    from object_model import transition
+    from object_model import compute_object_id, transition
 
 State = Dict[str, int]
 DEFAULT_BUNDLE = Path(__file__).resolve().parents[1] / "audit_bundle.json"
@@ -23,17 +23,33 @@ def _load_bundle(path: Path) -> Dict[str, object]:
 def verify_bundle(path: str = str(DEFAULT_BUNDLE)) -> bool:
     try:
         bundle = _load_bundle(Path(path))
+        object_id: str = bundle["object_id"]
+        metadata = bundle["metadata"]
         states: List[State] = bundle["accepted_states"]
         transition_count: int = bundle["transition_count"]
         threshold: int = bundle["threshold"]
+        initial_state: State = bundle["initial_state"]
     except (OSError, json.JSONDecodeError, KeyError, TypeError):
         print("TAMPER DETECTED")
         return False
-    if not states or transition_count != len(states) - 1:
+    if not isinstance(object_id, str) or not states:
         print("TAMPER DETECTED")
         return False
 
-    replayed_states: List[State] = [states[0]]
+    try:
+        recomputed_object_id = compute_object_id(metadata, threshold, initial_state)
+    except (TypeError, ValueError):
+        print("TAMPER DETECTED")
+        return False
+    if recomputed_object_id != object_id:
+        print("TAMPER DETECTED")
+        return False
+
+    if states[0] != initial_state or transition_count != len(states) - 1:
+        print("TAMPER DETECTED")
+        return False
+
+    replayed_states: List[State] = [initial_state]
     for _ in range(transition_count):
         replayed_states.append(transition(replayed_states[-1]))
     if replayed_states != states:
@@ -51,7 +67,11 @@ def verify_bundle(path: str = str(DEFAULT_BUNDLE)) -> bool:
         print("TAMPER DETECTED")
         return False
 
-    replayed_checkpoints = checkpoint_chain(states)
+    try:
+        replayed_checkpoints = checkpoint_chain(object_id, states)
+    except (TypeError, ValueError):
+        print("TAMPER DETECTED")
+        return False
     if replayed_checkpoints != bundle["checkpoints"]:
         print("TAMPER DETECTED")
         return False
