@@ -2,6 +2,12 @@
 
 This repository is a minimal demonstrator for causal closure and replay verifiability. No functional expansion will be accepted.
 
+**Stable Structural Anchor: v0.2.0**
+
+This version establishes object-level causal closure
+by cryptographically binding metadata, threshold (τ),
+and initial state (S0) into object identity.
+
 Architecture index (Layer 0/1/2): `../edo-architecture-index` (replace with public URL after publishing).
 
 ## Minimum Verifiable Kernel
@@ -44,3 +50,11 @@ Expected verifier output:
 ```text
 VERIFIED: Causally Closed Object
 ```
+
+## Citation
+
+If referencing this work, cite:
+
+fdo-kernel-mvk v0.2.0  
+Minimum Verifiable Kernel for Executable Digital Objects  
+GitHub: https://github.com/joy7758/fdo-kernel-mvk
