@@ -1,55 +1,48 @@
 # fdo-kernel-mvk
 
-This repository is a minimal demonstrator for causal closure and replay verifiability. No functional expansion will be accepted.
+A minimal executable kernel for causally closed digital objects.
+A deterministic reference for anti-tamper replay verification.
+A stable demonstration target for reproducible auditing.
 
 **Stable Structural Anchor: v0.2.0**
 
-This version establishes object-level causal closure
-by cryptographically binding metadata, threshold (τ),
-and initial state (S0) into object identity.
+## Problem
 
-Architecture index (Layer 0/1/2): `../edo-architecture-index` (replace with public URL after publishing).
+AI execution pipelines can be tampered after generation: state rewrites, policy edits, or checkpoint mutation may go unnoticed. MVK addresses this by binding identity (`metadata + threshold + initial_state`) and enforcing replayable deterministic verification over states, drifts, and checkpoints.
 
-## Minimum Verifiable Kernel
-
-`fdo-kernel-mvk` is a minimal implementation of an executable digital object model with replay verification. The kernel is intentionally constrained to deterministic state transitions, deterministic drift checks, and a hash-linked checkpoint chain.
-
-This repository demonstrates causal closure: object identity (`metadata + threshold + initial_state`) and accepted state evolution are jointly bound in an auditable checkpoint chain.
-
-## Scope Constraints
-
-- No external dependencies.
-- Python standard library only.
-- Deterministic execution only.
-- Core kernel code remains under 200 lines.
-- Functional expansion is explicitly forbidden for this demonstrator.
-
-## Repository Layout
-
-- `docs/formal_model.md`: formal tuple, invariants, and verification criteria.
-- `docs/invariants.md`: structural invariants for MVK v0.2.
-- `docs/walkthrough.md`: reproducible verification and tamper checks.
-- `kernel/object_model.py`: MEDO tuple and deterministic transition function.
-- `kernel/drift.py`: deterministic L1 drift metric.
-- `kernel/gate.py`: conformance gate and failure type.
-- `kernel/checkpoint.py`: checkpoint chain construction.
-- `kernel/verify.py`: replay verifier for transition, drift, and checkpoint integrity.
-- `demo.py`: deterministic run, single drift trigger, rollback, and audit bundle output.
-
-## Run
+## Run In 3 Steps
 
 ```bash
 python3 demo.py
 python3 kernel/verify.py
+python3 tests/test_reproducibility.py
 ```
 
-`python3 demo.py` generates `audit_bundle.json` as a runtime artifact.
+`demo.py` generates `audit_bundle.json`.
 
-Expected verifier output:
+## Expected Output Example
 
 ```text
+$ python3 kernel/verify.py
 VERIFIED: Causally Closed Object
+
+$ python3 tests/test_reproducibility.py
+TAMPER DETECTED
+reproducibility checks passed
 ```
+
+## Repository Layout
+
+- `docs/architecture.md`: minimal architecture and module boundaries.
+- `docs/formal_model.md`: formal tuple, invariants, and verification criteria.
+- `docs/invariants.md`: structural invariants for MVK v0.2.
+- `docs/walkthrough.md`: reproducible verification and tamper checks.
+- `kernel/object_model.py`: tuple and deterministic transition.
+- `kernel/drift.py`: deterministic L1 drift metric.
+- `kernel/gate.py`: conformance gate and failure type.
+- `kernel/checkpoint.py`: checkpoint chain construction.
+- `kernel/verify.py`: independent replay verifier.
+- `demo.py`: deterministic run and audit bundle output.
 
 ## Citation
 
