@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: fdo-kernel-mvk
+version: v0.2.0
+authors:
+  - family-names: Zhang
+    given-names: Bin
+repository-code: https://github.com/joy7758/fdo-kernel-mvk
+license: MIT
