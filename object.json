@@ -1,0 +1,8 @@
+{
+  "id": "",
+  "input": "hello-mvk",
+  "payload": "sha256",
+  "state": "init",
+  "constraint": "hash-match",
+  "signature": ""
+}
