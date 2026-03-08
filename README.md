@@ -2,6 +2,13 @@ fdo-kernel-mvk
 
 Minimal Deterministic Execution Kernel (Prototype)
 
+## Digital Biosphere Ecosystem
+
+This repository is part of the **Digital Biosphere Architecture**.
+
+Architecture overview:
+https://github.com/joy7758/digital-biosphere-architecture
+
 Commands:
 - make run    -> EXECUTION_OK
 - make replay -> REPLAY_PASS
