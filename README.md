@@ -7,7 +7,7 @@ Minimal Deterministic Execution Kernel (Prototype)
 This repository is part of the **Digital Biosphere Architecture**.
 
 Architecture overview:
-https://github.com/joy7758/digital-biosphere-architecture
+[digital-biosphere-architecture](https://github.com/joy7758/digital-biosphere-architecture)
 
 Commands:
 - make run    -> EXECUTION_OK
