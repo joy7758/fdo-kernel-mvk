@@ -1,0 +1,17 @@
+flowchart TD
+    A[Application / User Workflow] --> B[Agent Framework / Orchestration]
+    B --> C[Identity / Persona Layer]
+    C --> D[Governance Layer]
+    D --> E[Runtime Safety]
+    D --> F[Data Protection]
+    D --> G[Execution Integrity]
+    D --> H[Audit & Compliance]
+    E --> I[Tools / APIs / Enterprise Systems]
+    F --> I
+    G --> I
+    H --> I
+
+    J[Prompt Filtering / Masking] --> F
+    K[Action Validation / Policy Checks] --> D
+    L[Execution Trace / Logs] --> G
+    L --> H
