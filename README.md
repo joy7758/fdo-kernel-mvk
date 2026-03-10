@@ -29,21 +29,16 @@ See:
 - [AI Agent Runtime & Security Stack](docs/architecture/agent-runtime-stack.md)
 - [AI Agent Stack Architecture](docs/architecture/ai-agent-stack-architecture.md)
 - [AI Agent Security Architecture](docs/architecture/ai-agent-security-architecture.md)
+- [AI Agent Runtime OSI Model](docs/architecture/agent-runtime-osi.md)
 
 ```mermaid
 flowchart TB
-    A[Application] --> B[Agent Framework]
-    B --> C[Persona / Identity]
-    C --> D[Execution Integrity]
-    D --> E[Governance / Verification]
-    E --> F[Infrastructure]
-
-    G[User workflow and domain logic] -.-> A
-    H[Planning, memory, tools, orchestration] -.-> B
-    I[Stable operating profile and capability boundary] -.-> C
-    J[Deterministic state, signed traces, replay, conformance] -.-> D
-    K[Policy gates, approvals, review, audit] -.-> E
-    L[Models, tool hosts, storage, compute] -.-> F
+    A["Layer 7<br>Application"] --> B["Layer 6<br>Agent Framework"]
+    B --> C["Layer 5<br>Persona / Identity"]
+    C --> D["Layer 4<br>Execution Integrity"]
+    D --> E["Layer 3<br>Governance / Verification"]
+    E --> F["Layer 2<br>Tool & Data"]
+    F --> G["Layer 1<br>Infrastructure"]
 ```
 
 Core layers:
@@ -52,6 +47,7 @@ Core layers:
 - Persona / Identity
 - Execution Integrity
 - Governance / Verification
+- Tool & Data
 - Infrastructure
 
 Key distinction:

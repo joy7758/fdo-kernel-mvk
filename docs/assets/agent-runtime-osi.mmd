@@ -1,0 +1,27 @@
+flowchart TD
+    A["Layer 7<br>Application"]
+    B["Layer 6<br>Agent Framework"]
+    C["Layer 5<br>Identity"]
+    D["Layer 4<br>Execution Integrity"]
+    E["Layer 3<br>Governance / Verification"]
+    F["Layer 2<br>Tool & Data"]
+    G["Layer 1<br>Infrastructure"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+
+    B:::framework
+    C:::identity
+    D:::integrity
+    E:::governance
+    F:::tools
+
+    classDef framework fill:#E3F2FD,stroke:#1E88E5
+    classDef identity fill:#E8F5E9,stroke:#43A047
+    classDef integrity fill:#FFF3E0,stroke:#FB8C00
+    classDef governance fill:#FCE4EC,stroke:#E53935
+    classDef tools fill:#F3E5F5,stroke:#8E24AA
