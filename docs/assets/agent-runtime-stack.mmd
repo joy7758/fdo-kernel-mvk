@@ -1,0 +1,16 @@
+flowchart TD
+    A["Application Layer<br>apps · workflows"] --> B["Agent Framework"]
+    B --> C["Identity Layer"]
+    C --> D["Execution Integrity"]
+    D --> E["Governance / Security"]
+    E --> F["Infrastructure"]
+
+    B:::framework
+    C:::identity
+    D:::integrity
+    E:::security
+
+    classDef framework fill:#E3F2FD,stroke:#1E88E5
+    classDef identity fill:#E8F5E9,stroke:#43A047
+    classDef integrity fill:#FFF3E0,stroke:#FB8C00
+    classDef security fill:#FCE4EC,stroke:#E53935

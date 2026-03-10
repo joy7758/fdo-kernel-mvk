@@ -26,6 +26,7 @@ What it proves:
 This repository also explores where execution integrity fits in the broader AI agent stack.
 
 See:
+- [AI Agent Runtime & Security Stack](docs/architecture/agent-runtime-stack.md)
 - [AI Agent Stack Architecture](docs/architecture/ai-agent-stack-architecture.md)
 - [AI Agent Security Architecture](docs/architecture/ai-agent-security-architecture.md)
 
