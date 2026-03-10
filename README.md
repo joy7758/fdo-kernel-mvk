@@ -4,12 +4,11 @@ Minimal Deterministic Execution Kernel (Prototype)
 
 An exploration of execution integrity as a first-class layer in the AI agent stack.
 
-## Digital Biosphere Ecosystem
+## Architecture Context
 
-This repository is part of the **Digital Biosphere Architecture**.
-
-Architecture overview:
-[digital-biosphere-architecture](https://github.com/joy7758/digital-biosphere-architecture)
+This repository is part of the [Digital Biosphere Architecture](https://github.com/joy7758/digital-biosphere-architecture) ecosystem.
+It contributes the Execution Integrity Layer rather than trying to be the whole stack.
+Its focus is execution truth, verification surface, and runtime integrity.
 
 Commands:
 - make run    -> EXECUTION_OK
