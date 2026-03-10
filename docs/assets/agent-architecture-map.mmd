@@ -1,0 +1,27 @@
+flowchart TD
+    A["Application Layer<br>AI Apps / Copilots / Workflows"]
+    B["Agent Framework Layer<br>LangGraph / CrewAI / AutoGen"]
+    C["Identity Layer<br>Persona Objects (POP)"]
+    D["Execution Integrity Layer<br>MVK Kernel<br>Deterministic Action Logs"]
+    E["Governance Layer<br>Policy / Verification / Audit"]
+    F["Object Layer<br>FDO / Digital Objects"]
+    G["Infrastructure<br>Models / Compute / Storage"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+
+    B:::framework
+    C:::identity
+    D:::integrity
+    E:::governance
+    F:::objects
+
+    classDef framework fill:#E3F2FD,stroke:#1E88E5
+    classDef identity fill:#E8F5E9,stroke:#43A047
+    classDef integrity fill:#FFF3E0,stroke:#FB8C00
+    classDef governance fill:#FCE4EC,stroke:#E53935
+    classDef objects fill:#E0F2F1,stroke:#00897B

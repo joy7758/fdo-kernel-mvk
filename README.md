@@ -26,6 +26,7 @@ What it proves:
 This repository also explores where execution integrity fits in the broader AI agent stack.
 
 See:
+- [AI Agent Architecture Map](docs/architecture/agent-architecture-map.md)
 - [AI Agent Runtime & Security Stack](docs/architecture/agent-runtime-stack.md)
 - [AI Agent Stack Architecture](docs/architecture/ai-agent-stack-architecture.md)
 - [AI Agent Security Architecture](docs/architecture/ai-agent-security-architecture.md)
@@ -33,21 +34,21 @@ See:
 
 ```mermaid
 flowchart TB
-    A["Layer 7<br>Application"] --> B["Layer 6<br>Agent Framework"]
-    B --> C["Layer 5<br>Persona / Identity"]
-    C --> D["Layer 4<br>Execution Integrity"]
-    D --> E["Layer 3<br>Governance / Verification"]
-    E --> F["Layer 2<br>Tool & Data"]
-    F --> G["Layer 1<br>Infrastructure"]
+    A["Application Layer<br>AI Apps / Copilots / Workflows"] --> B["Agent Framework Layer<br>LangGraph / CrewAI / AutoGen"]
+    B --> C["Identity Layer<br>Persona Objects (POP)"]
+    C --> D["Execution Integrity Layer<br>MVK Kernel<br>Deterministic Action Logs"]
+    D --> E["Governance Layer<br>Policy / Verification / Audit"]
+    E --> F["Object Layer<br>FDO / Digital Objects"]
+    F --> G["Infrastructure<br>Models / Compute / Storage"]
 ```
 
 Core layers:
 - Application
 - Agent Framework
-- Persona / Identity
+- Identity
 - Execution Integrity
-- Governance / Verification
-- Tool & Data
+- Governance
+- Object Layer
 - Infrastructure
 
 Key distinction:
