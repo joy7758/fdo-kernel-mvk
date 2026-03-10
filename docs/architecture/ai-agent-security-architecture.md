@@ -4,6 +4,8 @@ This document sketches a practical security architecture for AI agent systems.
 
 It is framework-agnostic and intended to clarify how security, governance, and verification concerns relate to one another in production agent deployments.
 
+For a simpler discussion-oriented framing, see `AI Agent Stack Architecture` in `docs/architecture/ai-agent-stack-architecture.md`.
+
 ## Why this matters
 
 As agent systems move from experiments into enterprise workflows, security cannot be reduced to prompt guardrails alone.
