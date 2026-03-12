@@ -57,3 +57,7 @@ Key distinction:
 ## Schema Notes
 
 - [Evidence → Inference → Action](docs/schema-notes/evidence-inference-action.md)
+
+## Architecture Notes
+
+- [Execution Integrity vs Governance Runtime](docs/architecture/execution-integrity-vs-governance-runtime.md)
