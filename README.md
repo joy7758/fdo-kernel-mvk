@@ -61,3 +61,7 @@ Key distinction:
 ## Architecture Notes
 
 - [Execution Integrity vs Governance Runtime](docs/architecture/execution-integrity-vs-governance-runtime.md)
+
+## Roadmap Notes
+
+- [Success-Side Execution Traces](docs/roadmap-notes/success-side-execution-traces.md)
