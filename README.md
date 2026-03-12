@@ -53,3 +53,7 @@ Core layers:
 Key distinction:
 - Governance decides what should be allowed.
 - Execution integrity proves what actually happened.
+
+## Schema Notes
+
+- [Evidence → Inference → Action](docs/schema-notes/evidence-inference-action.md)

@@ -1,0 +1,62 @@
+{
+  "run_id": "run-2026-03-13-001",
+  "events": [
+    {
+      "event_id": "evt-0001",
+      "timestamp": "2026-03-13T10:00:00Z",
+      "state_before_hash": "sha256:state-before-1",
+      "observed_evidence": {
+        "user_request": "check whether incident exists",
+        "environment_snapshot": {
+          "system": "ServiceNow"
+        }
+      },
+      "inference_step": {
+        "summary": "incident lookup required before action"
+      },
+      "action_intent": {
+        "type": "lookup_incident",
+        "reason": "need evidence before creating ticket"
+      },
+      "tool_call": {
+        "tool_name": "servicenow.lookup_incident",
+        "input_hash": "sha256:lookup-input-1"
+      },
+      "tool_result": {
+        "status": "success",
+        "records_found": 0
+      },
+      "side_effect_diff": {
+        "external_change": "none"
+      },
+      "state_after_hash": "sha256:state-after-1"
+    },
+    {
+      "event_id": "evt-0002",
+      "timestamp": "2026-03-13T10:01:00Z",
+      "state_before_hash": "sha256:state-before-2",
+      "observed_evidence": {
+        "lookup_result": "no matching incident found"
+      },
+      "inference_step": {
+        "summary": "new incident should be created"
+      },
+      "action_intent": {
+        "type": "create_ticket",
+        "reason": "verified request with no existing incident"
+      },
+      "tool_call": {
+        "tool_name": "jira.create_ticket",
+        "input_hash": "sha256:create-ticket-input-1"
+      },
+      "tool_result": {
+        "status": "success",
+        "ticket_id": "INC-1042"
+      },
+      "side_effect_diff": {
+        "external_change": "ticket INC-1042 created"
+      },
+      "state_after_hash": "sha256:state-after-2"
+    }
+  ]
+}
