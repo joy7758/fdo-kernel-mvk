@@ -3,3 +3,4 @@ audit_bundle.json
 __pycache__/
 *.pyc
 .DS_Store
+.vscode/
