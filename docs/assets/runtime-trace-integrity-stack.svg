@@ -1,0 +1,79 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .title { font: 700 40px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 20px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; fill: #334155; }
+      .boxTitle { font: 700 24px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; fill: #0f172a; }
+      .boxText { font: 400 18px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; fill: #334155; }
+      .small { font: 400 18px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; fill: #475569; }
+      .label { font: 600 18px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; fill: #1d4ed8; }
+      .card { fill: #f8fafc; stroke: #1e3a8a; stroke-width: 2.5; rx: 22; ry: 22; }
+      .line { stroke: #1e3a8a; stroke-width: 4; fill: none; }
+      .dash { stroke: #2563eb; stroke-width: 3; stroke-dasharray: 12 10; fill: none; }
+      .panel { fill: #eff6ff; stroke: #93c5fd; stroke-width: 2; rx: 20; ry: 20; }
+    </style>
+
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L14,7 L0,14 z" fill="#1e3a8a"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="900"/>
+
+  <text class="title" x="90" y="90">Runtime Trace → Execution Integrity → Audit Evidence Stack</text>
+  <text class="subtitle" x="90" y="130">Conceptual stack view; the current MVK code implements the checksum-backed execution integrity step only.</text>
+
+  <!-- Boxes -->
+  <rect class="card" x="90" y="240" width="300" height="220"/>
+  <rect class="card" x="470" y="240" width="300" height="220"/>
+  <rect class="card" x="850" y="240" width="300" height="220"/>
+  <rect class="card" x="1230" y="240" width="300" height="220"/>
+
+  <text class="boxTitle" x="130" y="295">Agent Runtime</text>
+  <text class="boxText" x="130" y="335">• CrewAI</text>
+  <text class="boxText" x="130" y="365">• LangChain agents</text>
+  <text class="boxText" x="130" y="395">• AutoGen</text>
+  <text class="boxText" x="130" y="425">• orchestration systems</text>
+
+  <text class="boxTitle" x="510" y="295">Execution Trace</text>
+  <text class="boxText" x="510" y="335">• ordered runtime steps</text>
+  <text class="boxText" x="510" y="365">• tool calls / inputs / outputs</text>
+  <text class="boxText" x="510" y="395">• framework-native logs</text>
+  <text class="boxText" x="510" y="425">• not yet ingested by current MVK</text>
+
+  <text class="boxTitle" x="890" y="295">Execution Integrity</text>
+  <text class="boxText" x="890" y="335">• local object + local trace</text>
+  <text class="boxText" x="890" y="365">• current_hash / previous_hash</text>
+  <text class="boxText" x="890" y="395">• object_checksum</text>
+  <text class="boxText" x="890" y="425">• deterministic replay check</text>
+
+  <text class="boxTitle" x="1270" y="295">Audit Evidence Layer</text>
+  <text class="boxText" x="1270" y="335">• portable evidence bundle</text>
+  <text class="boxText" x="1270" y="365">• provenance references</text>
+  <text class="boxText" x="1270" y="395">• compliance / audit use</text>
+  <text class="boxText" x="1270" y="425">• future / adjacent scope</text>
+
+  <!-- Arrows -->
+  <line class="line" x1="390" y1="350" x2="470" y2="350" marker-end="url(#arrow)"/>
+  <line class="line" x1="770" y1="350" x2="850" y2="350" marker-end="url(#arrow)"/>
+  <line class="line" x1="1150" y1="350" x2="1230" y2="350" marker-end="url(#arrow)"/>
+
+  <!-- Nondeterministic boundary -->
+  <line class="dash" x1="430" y1="185" x2="430" y2="520"/>
+  <text class="label" x="215" y="210">left side = conceptual runtime trace boundary, not current MVK implementation</text>
+
+  <!-- Bottom explanation panel -->
+  <rect class="panel" x="90" y="575" width="1440" height="220"/>
+
+  <text class="boxTitle" x="130" y="635">Current boundary</text>
+  <text class="boxText" x="130" y="680">The current MVK prototype verifies a local JSON object and local trace file.</text>
+  <text class="boxText" x="130" y="715">It does not yet ingest live framework traces or produce a full audit evidence object.</text>
+  <text class="boxText" x="130" y="750">Checksums here are integrity checks, not identity-bound digital signatures.</text>
+
+  <text class="boxTitle" x="980" y="635">Key properties</text>
+  <text class="boxText" x="980" y="680">• local trace boundary</text>
+  <text class="boxText" x="980" y="715">• current_hash / previous_hash / object_checksum</text>
+  <text class="boxText" x="980" y="750">• replay verification</text>
+  <text class="boxText" x="980" y="785">• narrow, checksum-backed integrity claim</text>
+</svg>
