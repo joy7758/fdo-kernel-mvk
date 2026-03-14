@@ -9,7 +9,7 @@ reset_state() {
   "payload": "sha256",
   "state": "init",
   "constraint": "hash-match",
-  "signature": ""
+  "checksum": ""
 }
 JSON
 
@@ -17,7 +17,7 @@ JSON
 {
   "previous_hash": "GENESIS",
   "current_hash": "",
-  "object_signature": "",
+  "object_checksum": "",
   "status": "UNINITIALIZED"
 }
 JSON

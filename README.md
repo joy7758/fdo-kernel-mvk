@@ -17,8 +17,12 @@ Commands:
 
 What it proves:
 - Deterministic state evolution
-- Canonical object signature verification
+- Canonical object checksum verification
 - Trace-bound replay validation
+
+Security note:
+- This prototype currently uses SHA-256 checksums for tamper detection.
+- Checksums provide integrity checks, not identity-bound digital signatures.
 
 ## AI Agent Stack Architecture
 
@@ -53,6 +57,10 @@ Core layers:
 Key distinction:
 - Governance decides what should be allowed.
 - Execution integrity proves what actually happened.
+
+## License
+
+MIT
 
 ## Schema Notes
 

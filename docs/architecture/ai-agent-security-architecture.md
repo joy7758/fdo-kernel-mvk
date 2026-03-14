@@ -101,7 +101,7 @@ Examples:
 - Replayable step history
 - Trace verification
 
-This repository focuses most directly on this layer through deterministic state evolution, signature verification, and replay-bound validation.
+This repository focuses most directly on this layer through deterministic state evolution, checksum verification, and replay-bound validation.
 
 ### 7. Audit & Compliance
 

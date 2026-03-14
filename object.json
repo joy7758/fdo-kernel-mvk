@@ -4,5 +4,5 @@
   "payload": "sha256",
   "state": "init",
   "constraint": "hash-match",
-  "signature": ""
+  "checksum": ""
 }

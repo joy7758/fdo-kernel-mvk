@@ -7,6 +7,10 @@ import sys
 OBJECT_PATH = "object.json"
 TRACE_PATH = "trace.json"
 GENESIS_HASH = "GENESIS"
+CHECKSUM_FIELD = "checksum"
+LEGACY_CHECKSUM_FIELD = "signature"
+TRACE_CHECKSUM_FIELD = "object_checksum"
+LEGACY_TRACE_CHECKSUM_FIELD = "object_signature"
 
 
 def sha256_text(text):
@@ -17,10 +21,22 @@ def canonical_json(data):
     return json.dumps(data, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
 
-def compute_signature(obj):
+def compute_checksum(obj):
     canonical_obj = dict(obj)
-    canonical_obj.pop("signature", None)
+    canonical_obj.pop(CHECKSUM_FIELD, None)
+    canonical_obj.pop(LEGACY_CHECKSUM_FIELD, None)
     return sha256_text(canonical_json(canonical_obj))
+
+
+def normalize_object_fields(obj):
+    if LEGACY_CHECKSUM_FIELD in obj and CHECKSUM_FIELD not in obj:
+        obj[CHECKSUM_FIELD] = obj.pop(LEGACY_CHECKSUM_FIELD)
+    else:
+        obj.pop(LEGACY_CHECKSUM_FIELD, None)
+
+
+def trace_checksum(trace):
+    return trace.get(TRACE_CHECKSUM_FIELD) or trace.get(LEGACY_TRACE_CHECKSUM_FIELD)
 
 
 def is_sha256_hex(value):
@@ -48,14 +64,15 @@ def save_json(path, data, fail_message):
         sys.exit(1)
 
 
-def ensure_id_and_signature(obj):
+def ensure_id_and_checksum(obj):
+    normalize_object_fields(obj)
     current_hash = sha256_text(obj.get("input", ""))
 
     if not obj.get("id"):
         obj["id"] = current_hash
 
-    if not obj.get("signature"):
-        obj["signature"] = compute_signature(obj)
+    if not obj.get(CHECKSUM_FIELD):
+        obj[CHECKSUM_FIELD] = compute_checksum(obj)
 
     return current_hash
 
@@ -82,15 +99,16 @@ def fail_replay():
 
 def run():
     obj = load_json(OBJECT_PATH, "CONFORMANCE_FAIL")
+    normalize_object_fields(obj)
 
     if obj.get("payload") != "sha256" or obj.get("constraint") != "hash-match":
         fail_conformance()
 
-    current_hash = ensure_id_and_signature(obj)
+    current_hash = ensure_id_and_checksum(obj)
 
     if obj.get("id") != current_hash:
         fail_conformance()
-    if obj.get("signature") != compute_signature(obj):
+    if obj.get(CHECKSUM_FIELD) != compute_checksum(obj):
         fail_conformance()
 
     previous_hash = load_previous_hash()
@@ -98,10 +116,10 @@ def run():
         fail_conformance()
 
     obj["state"] = "executed"
-    obj["signature"] = compute_signature(obj)
+    obj[CHECKSUM_FIELD] = compute_checksum(obj)
     trace = {
         "current_hash": current_hash,
-        "object_signature": obj["signature"],
+        TRACE_CHECKSUM_FIELD: obj[CHECKSUM_FIELD],
         "previous_hash": previous_hash,
         "status": "EXECUTION_OK",
     }
@@ -114,7 +132,8 @@ def run():
 
 def tamper():
     obj = load_json(OBJECT_PATH, "CONFORMANCE_FAIL")
-    if not obj.get("id") or not obj.get("signature"):
+    normalize_object_fields(obj)
+    if not obj.get("id") or not obj.get(CHECKSUM_FIELD):
         fail_conformance()
 
     obj["input"] = f"{obj.get('input', '')}-tampered"
@@ -126,6 +145,7 @@ def tamper():
 def replay():
     obj = load_json(OBJECT_PATH, "REPLAY_FAIL")
     trace = load_json(TRACE_PATH, "REPLAY_FAIL")
+    normalize_object_fields(obj)
 
     if trace.get("status") != "EXECUTION_OK":
         fail_replay()
@@ -134,12 +154,12 @@ def replay():
 
     if obj.get("id") != recomputed_hash:
         fail_replay()
-    if obj.get("signature") != compute_signature(obj):
+    if obj.get(CHECKSUM_FIELD) != compute_checksum(obj):
         fail_replay()
 
     if trace.get("current_hash") != recomputed_hash:
         fail_replay()
-    if trace.get("object_signature") != obj.get("signature"):
+    if trace_checksum(trace) != obj.get(CHECKSUM_FIELD):
         fail_replay()
 
     previous_hash = trace.get("previous_hash")
