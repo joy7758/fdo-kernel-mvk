@@ -78,6 +78,10 @@ MIT
 
 - [Success-Side Execution Traces](docs/roadmap-notes/success-side-execution-traces.md)
 
+## FDO-facing Note
+
+For FDO-related positioning, see [docs/fdo-relation-note.md](docs/fdo-relation-note.md).
+
 ## Architecture Navigation
 
 - [Digital Biosphere Architecture](https://github.com/joy7758/digital-biosphere-architecture)
