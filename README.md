@@ -4,6 +4,10 @@ Minimal Deterministic Execution Kernel (Prototype)
 
 An exploration of execution integrity as a first-class layer in the AI agent stack.
 
+## Role in Digital Biosphere Architecture
+
+MVK is the **Execution Integrity Verification Entry**.
+
 ## Architecture Context
 
 This repository is part of the [Digital Biosphere Architecture](https://github.com/joy7758/digital-biosphere-architecture) ecosystem.
