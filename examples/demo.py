@@ -8,7 +8,9 @@ from kernel.object_model import MEDO, compute_object_id, transition
 
 
 def main() -> None:
-    root_dir = Path(__file__).resolve().parent
+    repo_root = Path(__file__).resolve().parents[1]
+    output_path = repo_root / "examples" / "output" / "audit_bundle.json"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     medo = MEDO(
         metadata={"id": "medo-001", "name": "fdo-kernel-mvk"},
         initial_state={"x": 0, "y": 0},
@@ -52,8 +54,10 @@ def main() -> None:
         },
     }
 
-    with open(root_dir / "audit_bundle.json", "w", encoding="utf-8") as handle:
+    with open(output_path, "w", encoding="utf-8") as handle:
         json.dump(bundle, handle, indent=2, sort_keys=True)
+
+    print(output_path.relative_to(repo_root))
 
 
 if __name__ == "__main__":

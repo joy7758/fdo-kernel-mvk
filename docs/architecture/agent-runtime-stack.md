@@ -7,8 +7,8 @@ Layers:
 1. Application
 2. Agent Framework
 3. Identity Layer
-4. Execution Integrity
-5. Governance / Security
+4. Governance / Security
+5. Execution Integrity
 6. Infrastructure
 
 ## Why Execution Integrity
@@ -30,8 +30,8 @@ Execution integrity focuses on:
 flowchart TD
     A["Application Layer<br>apps · workflows"] --> B["Agent Framework"]
     B --> C["Identity Layer"]
-    C --> D["Execution Integrity"]
-    D --> E["Governance / Security"]
+    C --> D["Governance / Security"]
+    D --> E["Execution Integrity"]
     E --> F["Infrastructure"]
 
     B:::framework
@@ -46,6 +46,10 @@ flowchart TD
 ```
 
 This is still an early conceptual sketch intended to clarify discussion around agent runtime architecture.
+
+Canonical five-layer order:
+
+Persona -> Interaction -> Governance -> Execution Integrity -> Audit
 
 ## Related Materials
 

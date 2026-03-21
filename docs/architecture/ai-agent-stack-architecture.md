@@ -2,7 +2,7 @@
 
 This document presents a discussion-oriented framing for AI agent systems.
 
-The goal is simple: make `execution integrity` visible as a first-class layer in the stack rather than burying it inside generic orchestration, observability, or governance language.
+The goal is simple: make `execution integrity` visible as a first-class layer in the stack without collapsing it into governance, audit, or generic orchestration language.
 
 ## Layered View
 
@@ -10,15 +10,15 @@ The goal is simple: make `execution integrity` visible as a first-class layer in
 flowchart TB
     A[Application] --> B[Agent Framework]
     B --> C[Persona / Identity]
-    C --> D[Execution Integrity]
-    D --> E[Governance / Verification]
+    C --> D[Governance / Verification]
+    D --> E[Execution Integrity]
     E --> F[Infrastructure]
 
     G[User workflow and domain logic] -.-> A
     H[Planning, memory, tools, orchestration] -.-> B
     I[Stable operating profile and capability boundary] -.-> C
-    J[Deterministic state, signed traces, replay, conformance] -.-> D
-    K[Policy gates, approvals, review, audit] -.-> E
+    J[Policy gates, approvals, review, audit] -.-> D
+    K[Deterministic state, signed traces, replay, conformance] -.-> E
     L[Models, tool hosts, storage, compute] -.-> F
 ```
 
@@ -61,7 +61,20 @@ This includes:
 
 This layer is often collapsed into prompts today, but it is more useful to treat it as structured system state.
 
-### 4. Execution Integrity
+### 4. Governance / Verification
+
+This layer wraps execution with organizational control.
+
+Examples:
+
+- Policy gates
+- Approval checkpoints
+- Reviewer workflows
+- Compliance evidence and audit review
+
+Governance decides whether actions should be allowed, escalated, or reviewed.
+
+### 5. Execution Integrity
 
 This layer answers the question:
 
@@ -76,22 +89,9 @@ Examples:
 
 This repository is primarily an exploration of this layer.
 
-### 5. Governance / Verification
+This layer sits downstream of governance on purpose.
 
-This layer wraps execution with organizational control.
-
-Examples:
-
-- Policy gates
-- Approval checkpoints
-- Reviewer workflows
-- Compliance evidence and audit review
-
-It is separated here from execution integrity on purpose.
-
-Governance decides whether actions should be allowed, escalated, or reviewed.
-
-Verification uses evidence to evaluate whether the system stayed within policy and whether execution artifacts are trustworthy.
+Execution integrity proves what actually happened after governance has already decided what should be allowed.
 
 ### 6. Infrastructure
 
@@ -105,7 +105,7 @@ Examples:
 - Network and compute
 - Enterprise systems and APIs
 
-## Why Separate Execution Integrity From Governance
+## Why Separate Governance From Execution Integrity
 
 These two concepts are often mixed together, but they solve different problems.
 

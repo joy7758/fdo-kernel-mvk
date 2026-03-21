@@ -1,6 +1,7 @@
-audit_bundle.json
 .venv/
 __pycache__/
 *.pyc
 .DS_Store
 .vscode/
+examples/output/*.json
+examples/runtime/*.json

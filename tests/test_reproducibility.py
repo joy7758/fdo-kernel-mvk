@@ -1,22 +1,31 @@
 import json
 import subprocess
+import unittest
 from pathlib import Path
 
 from kernel.verify import verify_bundle
 
 ROOT = Path(__file__).resolve().parents[1]
-BUNDLE = ROOT / "audit_bundle.json"
+BUNDLE = ROOT / "examples" / "output" / "audit_bundle.json"
 
-subprocess.run(["python3", str(ROOT / "demo.py")], check=True)
-bundle = json.loads(BUNDLE.read_text(encoding="utf-8"))
 
-assert "object_id" in bundle and isinstance(bundle["object_id"], str) and bundle["object_id"]
-assert len(bundle["drifts"]) == 5
+class ReproducibilityTests(unittest.TestCase):
+    def test_demo_bundle_is_replay_verifiable_and_tamper_detecting(self) -> None:
+        subprocess.run(["python3", "-m", "examples.demo"], cwd=ROOT, check=True)
+        bundle = json.loads(BUNDLE.read_text(encoding="utf-8"))
 
-tampered = dict(bundle)
-tampered["threshold"] = bundle["threshold"] + 1
-tampered_path = ROOT / "audit_bundle_tampered.json"
-tampered_path.write_text(json.dumps(tampered, indent=2, sort_keys=True), encoding="utf-8")
+        self.assertIn("object_id", bundle)
+        self.assertTrue(isinstance(bundle["object_id"], str) and bundle["object_id"])
+        self.assertEqual(len(bundle["drifts"]), 5)
+        self.assertTrue(verify_bundle(str(BUNDLE)))
 
-assert verify_bundle(str(tampered_path)) is False
-print("reproducibility checks passed")
+        tampered = dict(bundle)
+        tampered["threshold"] = bundle["threshold"] + 1
+        tampered_path = ROOT / "examples" / "output" / "audit_bundle_tampered.json"
+        tampered_path.write_text(json.dumps(tampered, indent=2, sort_keys=True), encoding="utf-8")
+
+        self.assertFalse(verify_bundle(str(tampered_path)))
+
+
+if __name__ == "__main__":
+    unittest.main()

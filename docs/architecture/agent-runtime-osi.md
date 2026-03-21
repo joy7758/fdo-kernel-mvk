@@ -36,16 +36,7 @@ This includes:
 - Roles
 - Capabilities
 
-### Layer 4. Execution Integrity
-
-The evidence layer that records and verifies what the runtime actually did.
-
-Examples:
-
-- Deterministic action traces
-- Replayable runtime logs
-
-### Layer 3. Governance / Verification
+### Layer 4. Governance / Verification
 
 The control layer that applies policy and validates whether execution stayed within allowed boundaries.
 
@@ -54,6 +45,15 @@ Examples:
 - Policy validation
 - Security checks
 - Auditability
+
+### Layer 3. Execution Integrity
+
+The evidence layer that records and verifies what the runtime actually did.
+
+Examples:
+
+- Deterministic action traces
+- Replayable runtime logs
 
 ### Layer 2. Tool & Data
 
@@ -86,8 +86,8 @@ An OSI-style stack makes it easier to discuss where a given mechanism belongs.
 - Application explains the user-facing outcome.
 - Framework explains orchestration.
 - Identity explains who the agent is allowed to be.
-- Execution integrity explains what can be proven later.
 - Governance explains what policies apply.
+- Execution integrity explains what can be proven later.
 - Tool and data explains what the agent can reach.
 - Infrastructure explains what the whole system runs on.
 

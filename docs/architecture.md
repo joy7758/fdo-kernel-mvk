@@ -38,7 +38,7 @@ This document describes the minimal execution and verification architecture of `
 - Security effect: out-of-bound transitions are rejected and rollbackable.
 
 ### 4) Independent Verification
-- Inputs: `audit_bundle.json`.
+- Inputs: `examples/output/audit_bundle.json`.
 - Checks:
   - identity recomputation
   - transition replay determinism

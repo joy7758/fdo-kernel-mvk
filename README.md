@@ -1,92 +1,55 @@
-fdo-kernel-mvk
+# fdo-kernel-mvk
 
-Minimal Deterministic Execution Kernel (Prototype)
+Execution Integrity Layer for deterministic, replay-verifiable autonomous object runs.
 
-An exploration of execution integrity as a first-class layer in the AI agent stack.
+## Role
 
-## Role in Digital Biosphere Architecture
+`fdo-kernel-mvk` is the execution-integrity layer in the Digital Biosphere Architecture. It focuses on execution truth, deterministic replay, tamper detection, and fail-closed conformance for bounded autonomous object runs.
 
-MVK is the **Execution Integrity Verification Entry**.
+## Not this repo
 
-## Architecture Context
+- not the governance layer
+- not the audit control plane
+- not the architecture hub
+- not a full agent framework
 
-This repository is part of the [Digital Biosphere Architecture](https://github.com/joy7758/digital-biosphere-architecture) ecosystem.
-It contributes the Execution Integrity Layer rather than trying to be the whole stack.
-Its focus is execution truth, verification surface, and runtime integrity.
+## Start here
 
-Commands:
-- make run    -> EXECUTION_OK
-- make replay -> REPLAY_PASS
-- make tamper -> CONFORMANCE_FAIL (fail-closed)
+- [docs/boundary.md](docs/boundary.md)
+- [docs/replay-model.md](docs/replay-model.md)
+- [examples/demo.md](examples/demo.md)
+- [examples/fixtures/](examples/fixtures/)
 
-What it proves:
-- Deterministic state evolution
-- Canonical object checksum verification
-- Trace-bound replay validation
+## Depends on
 
-Security note:
-- This prototype currently uses SHA-256 checksums for tamper detection.
-- Checksums provide integrity checks, not identity-bound digital signatures.
+- [digital-biosphere-architecture](https://github.com/joy7758/digital-biosphere-architecture)
+- [token-governor](https://github.com/joy7758/token-governor)
+- [aro-audit](https://github.com/joy7758/aro-audit)
 
-## AI Agent Stack Architecture
+## Run / Replay / Tamper
 
-This repository also explores where execution integrity fits in the broader AI agent stack.
-
-See:
-- [AI Agent Architecture Map](docs/architecture/agent-architecture-map.md)
-- [AI Agent Runtime & Security Stack](docs/architecture/agent-runtime-stack.md)
-- [AI Agent Stack Architecture](docs/architecture/ai-agent-stack-architecture.md)
-- [AI Agent Security Architecture](docs/architecture/ai-agent-security-architecture.md)
-- [AI Agent Runtime OSI Model](docs/architecture/agent-runtime-osi.md)
-
-```mermaid
-flowchart TB
-    A["Application Layer<br>AI Apps / Copilots / Workflows"] --> B["Agent Framework Layer<br>LangGraph / CrewAI / AutoGen"]
-    B --> C["Identity Layer<br>Persona Objects (POP)"]
-    C --> D["Execution Integrity Layer<br>MVK Kernel<br>Deterministic Action Logs"]
-    D --> E["Governance Layer<br>Policy / Verification / Audit"]
-    E --> F["Object Layer<br>FDO / Digital Objects"]
-    F --> G["Infrastructure<br>Models / Compute / Storage"]
+```bash
+make run
+make replay
+make tamper
 ```
 
-Core layers:
-- Application
-- Agent Framework
-- Identity
-- Execution Integrity
-- Governance
-- Object Layer
-- Infrastructure
+Expected outputs:
+
+- `make run` -> `EXECUTION_OK`
+- `make replay` -> `REPLAY_PASS`
+- `make tamper` -> `CONFORMANCE_FAIL`
+
+Canonical stack order:
+
+Persona -> Interaction -> Governance -> Execution Integrity -> Audit
 
 Key distinction:
+
 - Governance decides what should be allowed.
-- Execution integrity proves what actually happened.
+- MVK proves what actually happened.
 
-## License
+## Status
 
-MIT
-
-## Schema Notes
-
-- [Evidence → Inference → Action](docs/schema-notes/evidence-inference-action.md)
-
-## Architecture Notes
-
-- [Execution Integrity vs Governance Runtime](docs/architecture/execution-integrity-vs-governance-runtime.md)
-
-## Roadmap Notes
-
-- [Success-Side Execution Traces](docs/roadmap-notes/success-side-execution-traces.md)
-
-## FDO-facing Note
-
-For FDO-related positioning, see [docs/fdo-relation-note.md](docs/fdo-relation-note.md).
-
-## Architecture Navigation
-
-- [Digital Biosphere Architecture](https://github.com/joy7758/digital-biosphere-architecture)
-- [Persona Object Protocol](https://github.com/joy7758/persona-object-protocol)
-- [Agent Intent Protocol](https://github.com/joy7758/agent-intent-protocol)
-- [Token Governor](https://github.com/joy7758/token-governor)
-- [MVK](https://github.com/joy7758/fdo-kernel-mvk)
-- [ARO Audit](https://github.com/joy7758/aro-audit)
+- active execution-integrity prototype
+- boundary cleanup in progress

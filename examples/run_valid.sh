@@ -2,5 +2,5 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
-python3 demo.py
-python3 kernel/verify.py
+python3 -m examples.demo
+python3 -m kernel.verify examples/output/audit_bundle.json

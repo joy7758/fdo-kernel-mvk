@@ -6,19 +6,19 @@ conformance enforcement, rollback, and independent replay verification.
 ## 1. Run Demo
 
 ```bash
-python3 demo.py
+python3 -m examples.demo
 ```
 
 Expected result:
 
 - 5 accepted transitions
 - 1 drift event triggering rollback
-- audit_bundle.json generated
+- `examples/output/audit_bundle.json` generated
 
 ## 2. Replay Verification
 
 ```bash
-python3 kernel/verify.py
+python3 -m kernel.verify examples/output/audit_bundle.json
 ```
 
 Expected output:
@@ -29,7 +29,7 @@ VERIFIED: Causally Closed Object
 
 ## 3. State Tamper Detection
 
-Modify any accepted state in audit_bundle.json and rerun verification.
+Modify any accepted state in `examples/output/audit_bundle.json` and rerun verification.
 
 Expected output:
 
@@ -39,7 +39,7 @@ TAMPER DETECTED
 
 ## 4. Threshold Tamper Detection
 
-Modify `threshold` in `audit_bundle.json` and rerun verification.
+Modify `threshold` in `examples/output/audit_bundle.json` and rerun verification.
 
 Expected output:
 
@@ -49,7 +49,7 @@ TAMPER DETECTED
 
 ## 5. Metadata Tamper Detection
 
-Modify `metadata` in `audit_bundle.json` and rerun verification.
+Modify `metadata` in `examples/output/audit_bundle.json` and rerun verification.
 
 Expected output:
 

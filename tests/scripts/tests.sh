@@ -1,28 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-reset_state() {
-  cat > object.json <<'JSON'
-{
-  "id": "",
-  "input": "hello-mvk",
-  "payload": "sha256",
-  "state": "init",
-  "constraint": "hash-match",
-  "checksum": ""
-}
-JSON
-
-  cat > trace.json <<'JSON'
-{
-  "previous_hash": "GENESIS",
-  "current_hash": "",
-  "object_checksum": "",
-  "status": "UNINITIALIZED"
-}
-JSON
-}
-
 assert_last_line() {
   local output="$1"
   local expected="$2"
@@ -33,8 +11,6 @@ assert_last_line() {
     exit 1
   fi
 }
-
-reset_state
 
 for _ in 1 2 3; do
   run_output="$(make run)"
@@ -58,5 +34,4 @@ if ! printf '%s\n' "$tamper_output" | grep -q "CONFORMANCE_FAIL"; then
   exit 1
 fi
 
-reset_state
 echo "ALL_TESTS_PASS"

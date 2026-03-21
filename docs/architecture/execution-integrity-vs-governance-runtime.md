@@ -1,10 +1,10 @@
-# Execution Integrity vs Governance Runtime
+# Governance Runtime vs Execution Integrity
 
 This document summarizes an architectural alignment between two layers
 emerging in modern AI agent systems:
 
-1. Execution Integrity Kernel
-2. Governance Runtime
+1. Governance Runtime
+2. Execution Integrity Kernel
 
 The distinction became clear during discussions with the DOF
 (Deterministic Observability Framework) project.
@@ -15,21 +15,38 @@ The distinction became clear during discussions with the DOF
 
 Modern agent systems often mix multiple responsibilities inside a single framework.
 
-However the stack becomes clearer if we separate three concerns:
+However the stack becomes clearer if we separate five concerns:
 
 identity / persona
-execution integrity
+interaction semantics
 governance / verification
-
-Execution integrity answers:
-
-**what actually happened during runtime**
+execution integrity
+audit
 
 Governance answers:
 
 **what actions are allowed**
 
+Execution integrity answers:
+
+**what actually happened during runtime**
+
 ---
+
+## Governance Runtime
+
+The governance layer sits upstream of execution.
+
+Key ideas:
+
+- policy enforcement before execution
+- deterministic verification gates
+- rule based hallucination detection
+- AST validation for generated code
+- formal verification hooks
+
+Instead of reading execution traces during enforcement,
+the governance layer operates on current requests and decisions.
 
 ## Execution Integrity (MVK)
 
@@ -57,25 +74,6 @@ H_i = hash(state_before_i || event_i || state_after_i)
 The final run hash is derived from the ordered sequence of transition hashes.
 
 This allows deterministic replay verification.
-
----
-
-## Governance Runtime (DOF)
-
-The Deterministic Observability Framework introduces a governance layer
-that sits between agent frameworks and the external world.
-
-Key ideas:
-
-- policy enforcement before execution
-- deterministic verification gates
-- rule based hallucination detection
-- AST validation for generated code
-- Z3 formal verification
-- cryptographic attestations
-
-Instead of reading execution traces during enforcement,
-the governance layer operates statelessly on current outputs.
 
 ---
 
@@ -108,11 +106,11 @@ what actually happened
 
 The emerging agent runtime architecture may look like:
 
-Identity / Persona
--> Execution Integrity Kernel
+Persona
+-> Interaction
 -> Governance Runtime
--> Agent Framework
--> Infrastructure
+-> Execution Integrity Kernel
+-> Audit
 
 ---
 

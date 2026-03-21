@@ -42,6 +42,16 @@ The stable operating profile of the agent.
 
 This repository maps that concern to `Persona Objects (POP)`.
 
+### Governance Layer
+
+The policy and verification layer that decides what should be allowed before execution proceeds.
+
+Examples:
+
+- Policy
+- Verification
+- Audit preparation
+
 ### Execution Integrity Layer
 
 The execution substrate that records what actually happened and makes runtime behavior verifiable.
@@ -50,16 +60,6 @@ This repository maps that concern to:
 
 - MVK kernel
 - Deterministic action logs
-
-### Governance Layer
-
-The policy and verification layer that controls and audits execution.
-
-Examples:
-
-- Policy
-- Verification
-- Audit
 
 ### Object Layer
 
@@ -86,7 +86,7 @@ Most public discussion still centers on prompts or orchestration frameworks.
 
 In production systems, that is incomplete.
 
-Identity, execution integrity, governance, and durable objects all matter if the goal is a system that can be operated, verified, and referenced over time.
+Identity, governance, execution integrity, and durable objects all matter if the goal is a system that can be operated, verified, and referenced over time.
 
 In this framing, execution integrity acts as the bridge between agent reasoning and real-world actions, while the object layer provides stable artifacts that outlive a single run.
 

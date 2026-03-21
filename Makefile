@@ -1,8 +1,16 @@
-run:
-	python3 mvk.py --run
+PYTHON ?= python3
+RUNTIME_DIR ?= examples/runtime
 
-tamper:
-	python3 mvk.py --tamper
+.PHONY: run replay tamper smoke
+
+run:
+	$(PYTHON) -m kernel.cli run --runtime-dir $(RUNTIME_DIR)
 
 replay:
-	python3 mvk.py --replay
+	$(PYTHON) -m kernel.cli replay --runtime-dir $(RUNTIME_DIR)
+
+tamper:
+	$(PYTHON) -m kernel.cli tamper --runtime-dir $(RUNTIME_DIR)
+
+smoke:
+	$(PYTHON) -m unittest discover -s tests -p 'test_*.py'

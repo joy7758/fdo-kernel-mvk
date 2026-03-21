@@ -1,13 +1,13 @@
 flowchart TB
     A[Application] --> B[Agent Framework]
     B --> C[Persona / Identity]
-    C --> D[Execution Integrity]
-    D --> E[Governance / Verification]
+    C --> D[Governance / Verification]
+    D --> E[Execution Integrity]
     E --> F[Infrastructure]
 
     G[User workflow and domain logic] -.-> A
     H[Planning, memory, tools, orchestration] -.-> B
     I[Stable operating profile and capability boundary] -.-> C
-    J[Deterministic state, signed traces, replay, conformance] -.-> D
-    K[Policy gates, approvals, review, audit] -.-> E
+    J[Policy gates, approvals, review, audit] -.-> D
+    K[Deterministic state, signed traces, replay, conformance] -.-> E
     L[Models, tool hosts, storage, compute] -.-> F
