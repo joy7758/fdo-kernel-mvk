@@ -6,13 +6,13 @@ Pre-refactor root inventory snapshot for `fdo-kernel-mvk`:
 - `examples/`
 - `kernel/`
 - `tests/`
-- `demo.py`
-- `mvk.py`
-- `object.json`
-- `trace.json`
-- `tests.sh`
-- `POSITION_PAPER.md`
-- `audit_bundle.json`
+- legacy root demo script
+- legacy root CLI shim
+- legacy root object fixture
+- legacy root trace fixture
+- legacy root test script
+- root position paper
+- root audit bundle
 
 Primary boundary issues:
 
