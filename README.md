@@ -1,75 +1,66 @@
-fdo-kernel-mvk
+<!-- language-switch:start -->
+<p>
+  <a href="./README.md">
+    <img src="https://img.shields.io/badge/English-Current-1f883d?style=for-the-badge" alt="English">
+  </a>
+  <a href="./README.zh-CN.md">
+    <img src="https://img.shields.io/badge/Chinese-Switch-0f172a?style=for-the-badge" alt="Chinese">
+  </a>
+</p>
+<!-- language-switch:end -->
 
-Minimal Deterministic Execution Kernel (Prototype)
+# fdo-kernel-mvk
 
-An exploration of execution integrity as a first-class layer in the AI agent stack.
+Execution Integrity Layer for deterministic, replay-verifiable autonomous object runs.
 
-## Architecture Context
+## Role
 
-This repository is part of the [Digital Biosphere Architecture](https://github.com/joy7758/digital-biosphere-architecture) ecosystem.
-It contributes the Execution Integrity Layer rather than trying to be the whole stack.
-Its focus is execution truth, verification surface, and runtime integrity.
+`fdo-kernel-mvk` is the execution-integrity layer in the Digital Biosphere Architecture. It focuses on execution truth, deterministic replay, tamper detection, and fail-closed conformance for bounded autonomous object runs.
 
-Commands:
-- make run    -> EXECUTION_OK
-- make replay -> REPLAY_PASS
-- make tamper -> CONFORMANCE_FAIL (fail-closed)
+## Not this repo
 
-What it proves:
-- Deterministic state evolution
-- Canonical object checksum verification
-- Trace-bound replay validation
+- not the governance layer
+- not the audit control plane
+- not the architecture hub
+- not a full agent framework
 
-Security note:
-- This prototype currently uses SHA-256 checksums for tamper detection.
-- Checksums provide integrity checks, not identity-bound digital signatures.
+## Start here
 
-## AI Agent Stack Architecture
+- [docs/boundary.md](docs/boundary.md)
+- [docs/replay-model.md](docs/replay-model.md)
+- [examples/demo.md](examples/demo.md)
+- [examples/fixtures/](examples/fixtures/)
 
-This repository also explores where execution integrity fits in the broader AI agent stack.
+## Depends on
 
-See:
-- [AI Agent Architecture Map](docs/architecture/agent-architecture-map.md)
-- [AI Agent Runtime & Security Stack](docs/architecture/agent-runtime-stack.md)
-- [AI Agent Stack Architecture](docs/architecture/ai-agent-stack-architecture.md)
-- [AI Agent Security Architecture](docs/architecture/ai-agent-security-architecture.md)
-- [AI Agent Runtime OSI Model](docs/architecture/agent-runtime-osi.md)
+- [digital-biosphere-architecture](https://github.com/joy7758/digital-biosphere-architecture)
+- [token-governor](https://github.com/joy7758/token-governor)
+- [aro-audit](https://github.com/joy7758/aro-audit)
 
-```mermaid
-flowchart TB
-    A["Application Layer<br>AI Apps / Copilots / Workflows"] --> B["Agent Framework Layer<br>LangGraph / CrewAI / AutoGen"]
-    B --> C["Identity Layer<br>Persona Objects (POP)"]
-    C --> D["Execution Integrity Layer<br>MVK Kernel<br>Deterministic Action Logs"]
-    D --> E["Governance Layer<br>Policy / Verification / Audit"]
-    E --> F["Object Layer<br>FDO / Digital Objects"]
-    F --> G["Infrastructure<br>Models / Compute / Storage"]
+## Run / Replay / Tamper
+
+```bash
+make run
+make replay
+make tamper
 ```
 
-Core layers:
-- Application
-- Agent Framework
-- Identity
-- Execution Integrity
-- Governance
-- Object Layer
-- Infrastructure
+Expected outputs:
+
+- `make run` -> `EXECUTION_OK`
+- `make replay` -> `REPLAY_PASS`
+- `make tamper` -> `CONFORMANCE_FAIL`
+
+Canonical stack order:
+
+Persona -> Interaction -> Governance -> Execution Integrity -> Audit
 
 Key distinction:
+
 - Governance decides what should be allowed.
-- Execution integrity proves what actually happened.
+- MVK proves what actually happened.
 
-## License
+## Status
 
-MIT
-
-## Schema Notes
-
-- [Evidence → Inference → Action](docs/schema-notes/evidence-inference-action.md)
-
-## Architecture Notes
-
-- [Execution Integrity vs Governance Runtime](docs/architecture/execution-integrity-vs-governance-runtime.md)
-
-## Roadmap Notes
-
-- [Success-Side Execution Traces](docs/roadmap-notes/success-side-execution-traces.md)
+- active execution-integrity prototype
+- boundary cleanup in progress
