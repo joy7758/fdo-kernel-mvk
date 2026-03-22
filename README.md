@@ -1,3 +1,7 @@
+<!-- language-switch:start -->
+[English](./README.md) | [中文](./README.zh-CN.md)
+<!-- language-switch:end -->
+
 fdo-kernel-mvk
 
 Minimal Deterministic Execution Kernel (Prototype)
