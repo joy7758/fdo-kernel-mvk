@@ -6,18 +6,56 @@ fdo-kernel-mvk
 
 Minimal Deterministic Execution Kernel (Prototype)
 
-An exploration of execution integrity as a first-class layer in the AI agent stack.
+fdo-kernel-mvk is the execution-integrity layer repository in the Digital
+Biosphere Architecture. It focuses on deterministic execution, replay
+validation, and runtime truth surfaces. It is a layer repo, not the whole
+stack.
+
+## Role
+
+`fdo-kernel-mvk` is the execution-integrity layer repository in the Digital
+Biosphere Architecture.
+
+It focuses on deterministic execution, replay validation, and runtime truth
+surfaces.
+
+It is a layer repo, not the whole stack.
+
+## Not this repo
+
+- not the governance runtime
+- not the audit control plane
+- not the architecture hub
+- not the evidence packaging toolkit
+- not the benchmark suite
+
+## Start here
+
+- [docs/walkthrough.md](docs/walkthrough.md)
+- [digital-biosphere-architecture](https://github.com/joy7758/digital-biosphere-architecture)
+- [token-governor](https://github.com/joy7758/token-governor)
+- [agent-evidence](https://github.com/joy7758/agent-evidence)
+- [aro-audit](https://github.com/joy7758/aro-audit)
+
+## Depends on / Architecture navigation
+
+- Digital Biosphere Architecture provides the system context.
+- Token Governor is the governance layer.
+- Agent Evidence is the concrete evidence packaging entry.
+- ARO-Audit is the post-execution review layer.
+- Verifiable Agent Demo is the shortest walkthrough across adjacent layers.
+
+## Commands
+
+- `make run` -> `EXECUTION_OK`
+- `make replay` -> `REPLAY_PASS`
+- `make tamper` -> `CONFORMANCE_FAIL`
 
 ## Architecture Context
 
 This repository is part of the [Digital Biosphere Architecture](https://github.com/joy7758/digital-biosphere-architecture) ecosystem.
 It contributes the Execution Integrity Layer rather than trying to be the whole stack.
 Its focus is execution truth, verification surface, and runtime integrity.
-
-Commands:
-- make run    -> EXECUTION_OK
-- make replay -> REPLAY_PASS
-- make tamper -> CONFORMANCE_FAIL (fail-closed)
 
 What it proves:
 - Deterministic state evolution

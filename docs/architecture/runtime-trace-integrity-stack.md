@@ -2,6 +2,12 @@
 
 This note is a boundary map, not a claim that the current repository implements the whole stack.
 
+For public routing, start with
+[digital-biosphere-architecture](https://github.com/joy7758/digital-biosphere-architecture)
+as the architecture hub. From there, use `fdo-kernel-mvk` for execution
+integrity, `agent-evidence` for concrete evidence packaging, and `aro-audit`
+for post-execution review.
+
 It clarifies the relationship between:
 
 - agent runtime systems
