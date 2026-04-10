@@ -2,9 +2,10 @@
 [English](./README.md) | [中文](./README.zh-CN.md)
 <!-- language-switch:end -->
 
-fdo-kernel-mvk
+# fdo-kernel-mvk
 
-Minimal Deterministic Execution Kernel (Prototype)
+Execution-integrity layer for deterministic, replay-verifiable AI runtime proof
+surfaces.
 
 fdo-kernel-mvk is the execution-integrity layer repository in the Digital
 Biosphere Architecture. It focuses on deterministic execution, replay
@@ -37,13 +38,13 @@ It is a layer repo, not the whole stack.
 - [agent-evidence](https://github.com/joy7758/agent-evidence)
 - [aro-audit](https://github.com/joy7758/aro-audit)
 
-## Depends on / Architecture navigation
+## Architecture navigation
 
-- Digital Biosphere Architecture provides the system context.
-- Token Governor is the governance layer.
-- Agent Evidence is the concrete evidence packaging entry.
-- ARO-Audit is the post-execution review layer.
-- Verifiable Agent Demo is the shortest walkthrough across adjacent layers.
+- system context -> [digital-biosphere-architecture](https://github.com/joy7758/digital-biosphere-architecture)
+- governance layer -> [token-governor](https://github.com/joy7758/token-governor)
+- concrete evidence packaging entry -> [agent-evidence](https://github.com/joy7758/agent-evidence)
+- post-execution review -> [aro-audit](https://github.com/joy7758/aro-audit)
+- shortest walkthrough -> [verifiable-agent-demo](https://github.com/joy7758/verifiable-agent-demo)
 
 ## Commands
 
