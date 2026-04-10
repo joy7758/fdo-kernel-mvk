@@ -6,18 +6,51 @@ fdo 内核 mvk
 
 最小确定性执行内核（原型）
 
-对作为 AI 代理堆栈中的一流层的执行完整性的探索。
+fdo-kernel-mvk 是 Digital Biosphere Architecture 的 execution-integrity layer repository。它聚焦于 deterministic execution、replay validation 和 runtime truth surfaces。它是 layer repo，不是整个 stack。
+
+## Role
+
+`fdo-kernel-mvk` 是 Digital Biosphere Architecture 的 execution-integrity layer repository。
+
+它聚焦于 deterministic execution、replay validation 和 runtime truth surfaces。
+
+它是 layer repo，不是整个 stack。
+
+## Not this repo
+
+- not the governance runtime
+- not the audit control plane
+- not the architecture hub
+- not the evidence packaging toolkit
+- not the benchmark suite
+
+## Start here
+
+- [docs/walkthrough.md](docs/walkthrough.md)
+- [digital-biosphere-architecture](https://github.com/joy7758/digital-biosphere-architecture)
+- [token-governor](https://github.com/joy7758/token-governor)
+- [agent-evidence](https://github.com/joy7758/agent-evidence)
+- [aro-audit](https://github.com/joy7758/aro-audit)
+
+## Depends on / Architecture navigation
+
+- Digital Biosphere Architecture provides the system context.
+- Token Governor is the governance layer.
+- Agent Evidence is the concrete evidence packaging entry.
+- ARO-Audit is the post-execution review layer.
+- Verifiable Agent Demo is the shortest walkthrough across adjacent layers.
+
+## Commands
+
+- `make run` -> `EXECUTION_OK`
+- `make replay` -> `REPLAY_PASS`
+- `make tamper` -> `CONFORMANCE_FAIL`
 
 ## 架构背景
 
 该仓库是[数字生物圈架构](https://github.com/joy7758/digital-biosphere-architecture)生态系统的一部分。
-它贡献了执行完整性层，而不是试图成为整个堆栈。
+它贡献执行完整性层，而不是试图成为整个堆栈。
 它的重点是执行真相、验证表面和运行时完整性。
-
-命令：
-- 运行 -> EXECUTION_OK
-- 重播 -> REPLAY_PASS
-- make tamper -> CONFORMANCE_FAIL（失败关闭）
 
 它证明了什么：
 - 确定性状态演化

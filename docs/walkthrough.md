@@ -3,6 +3,14 @@
 This walkthrough demonstrates deterministic execution,
 conformance enforcement, rollback, and independent replay verification.
 
+It documents the execution-integrity layer only. For system context, start with
+[digital-biosphere-architecture](https://github.com/joy7758/digital-biosphere-architecture);
+for governance, use
+[token-governor](https://github.com/joy7758/token-governor); for concrete
+evidence packaging, use
+[agent-evidence](https://github.com/joy7758/agent-evidence); for
+post-execution review, use [aro-audit](https://github.com/joy7758/aro-audit).
+
 ## 1. Run Demo
 
 ```bash
