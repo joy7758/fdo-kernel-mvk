@@ -59,4 +59,25 @@ if ! printf '%s\n' "$tamper_output" | grep -q "CONFORMANCE_FAIL"; then
 fi
 
 reset_state
+make demo >/dev/null
+if [[ ! -f audit_bundle.json ]]; then
+  echo "ASSERT_FAIL missing audit_bundle.json"
+  exit 1
+fi
+
+verify_demo_output="$(make verify-demo)"
+assert_last_line "$verify_demo_output" "VERIFIED: Causally Closed Object"
+
+make export-aep >/dev/null
+if [[ ! -f mvk-aep-bundle/manifest.json ]]; then
+  echo "ASSERT_FAIL missing mvk-aep-bundle/manifest.json"
+  exit 1
+fi
+
+verify_aep_output="$(make verify-aep)"
+if ! printf '%s\n' "$verify_aep_output" | grep -q '"ok": true'; then
+  echo "ASSERT_FAIL missing AEP ok receipt"
+  exit 1
+fi
+
 echo "ALL_TESTS_PASS"
