@@ -12,6 +12,18 @@ Biosphere Architecture. It focuses on deterministic execution, replay
 validation, and runtime truth surfaces. It is a layer repo, not the whole
 stack.
 
+## Evidence handoff
+
+`fdo-kernel-mvk` proves execution integrity: deterministic execution, replay
+verification, checksum and checkpoint integrity, and tamper detection. It is not
+the evidence packaging toolkit.
+
+For portable signed evidence, receipts, offline verification, and reviewer
+handoff packs, use [agent-evidence](https://github.com/joy7758/agent-evidence).
+This repo now includes a minimal bridge walkthrough from `audit_bundle.json` to
+an Agent Evidence Profile-compatible bundle:
+[docs/end-to-end-evidence-path.md](docs/end-to-end-evidence-path.md).
+
 ## Role
 
 `fdo-kernel-mvk` is the execution-integrity layer repository in the Digital

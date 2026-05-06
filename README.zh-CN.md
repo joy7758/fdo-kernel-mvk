@@ -8,6 +8,16 @@
 
 fdo-kernel-mvk 是 Digital Biosphere Architecture 的 execution-integrity layer repository。它聚焦于 deterministic execution、replay validation 和 runtime truth surfaces。它是 layer repo，不是整个 stack。
 
+## 证据交接
+
+`fdo-kernel-mvk` 证明执行完整性：确定性执行、重放验证、checksum/checkpoint
+完整性和篡改检测。它不是证据打包工具。
+
+便携式签名证据、签名 manifest、receipt、offline verify 和 review pack 由
+[agent-evidence](https://github.com/joy7758/agent-evidence) 负责。本仓库现在新增一条从
+`audit_bundle.json` 到 Agent Evidence Profile-compatible bundle 的最小桥接路径：
+[docs/end-to-end-evidence-path.md](docs/end-to-end-evidence-path.md)。
+
 ## Role
 
 `fdo-kernel-mvk` 是 Digital Biosphere Architecture 的 execution-integrity layer repository。
