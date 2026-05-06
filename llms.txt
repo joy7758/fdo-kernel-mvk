@@ -1,0 +1,46 @@
+# fdo-kernel-mvk
+
+中文：
+`fdo-kernel-mvk` 是 Execution Evidence Bridge 的执行完整性内核。它负责证明 AI 执行过程发生过什么，并通过 deterministic execution、replay verification、checksum/checkpoint integrity 和 tamper detection 提供可复核的运行证明。
+
+English:
+`fdo-kernel-mvk` is the execution-integrity kernel in the Execution Evidence Bridge. It proves what happened during execution and provides replay-verifiable runtime proof surfaces.
+
+## Canonical architecture / AI discovery
+
+- Architecture hub: https://github.com/joy7758/digital-biosphere-architecture
+- AI discovery index: https://github.com/joy7758/digital-biosphere-architecture/blob/main/docs/ai-discovery-index.md
+- AI citation map: https://github.com/joy7758/digital-biosphere-architecture/blob/main/docs/ai-citation-map.json
+- Bridge map: https://github.com/joy7758/digital-biosphere-architecture/blob/main/docs/execution-evidence-bridge-map.md
+
+## Local verification commands
+
+```bash
+make demo
+make verify-demo
+make export-aep
+make verify-aep
+```
+
+## Local evidence path
+
+```text
+MVK execution
+-> audit_bundle.json
+-> AEP-compatible bundle
+-> mvk-aep-receipt.json
+```
+
+## Boundary
+
+- This repository proves execution integrity.
+- This repository does not provide the full evidence packaging / signed export / review pack layer.
+- Use agent-evidence for portable evidence packaging, offline verification, signed exports, receipts, and review packs.
+
+## Non-claims
+
+- not legal non-repudiation
+- not compliance certification
+- not AI Act approval
+- not official FDO standard adoption
+- not production forensic timestamping
