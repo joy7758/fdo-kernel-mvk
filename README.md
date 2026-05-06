@@ -24,6 +24,17 @@ This repo now includes a minimal bridge walkthrough from `audit_bundle.json` to
 an Agent Evidence Profile-compatible bundle:
 [docs/end-to-end-evidence-path.md](docs/end-to-end-evidence-path.md).
 
+AI / agent entry points:
+
+- `llms.txt`
+- `AGENTS.md`
+- `CITATION.cff`
+- Canonical AI discovery index: [https://github.com/joy7758/digital-biosphere-architecture/blob/main/docs/ai-discovery-index.md](https://github.com/joy7758/digital-biosphere-architecture/blob/main/docs/ai-discovery-index.md)
+- Canonical AI citation map: [https://github.com/joy7758/digital-biosphere-architecture/blob/main/docs/ai-citation-map.json](https://github.com/joy7758/digital-biosphere-architecture/blob/main/docs/ai-citation-map.json)
+
+These files help AI systems and agents discover, cite, and verify this
+repository role faster.
+
 ## Role
 
 `fdo-kernel-mvk` is the execution-integrity layer repository in the Digital

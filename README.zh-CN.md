@@ -18,6 +18,16 @@ fdo-kernel-mvk 是 Digital Biosphere Architecture 的 execution-integrity layer 
 `audit_bundle.json` 到 Agent Evidence Profile-compatible bundle 的最小桥接路径：
 [docs/end-to-end-evidence-path.md](docs/end-to-end-evidence-path.md)。
 
+AI / agent 入口：
+
+- `llms.txt`
+- `AGENTS.md`
+- `CITATION.cff`
+- 主索引：digital-biosphere-architecture 的 `docs/ai-discovery-index.md`
+- 引用地图：digital-biosphere-architecture 的 `docs/ai-citation-map.json`
+
+这些文件用于帮助 AI / agent 更快发现、引用和复核本仓库角色，不是新的宣传材料。
+
 ## Role
 
 `fdo-kernel-mvk` 是 Digital Biosphere Architecture 的 execution-integrity layer repository。
